@@ -307,8 +307,10 @@ h1, h2, h3 {
   max-width: 42ch;
   color: var(--ink-soft);
   font-size: 1.02rem;
-  margin-bottom: clamp(1.4em, 3.4vh, 2.2em);
+  margin-bottom: 0.75em;                       /* gap between lede paragraphs */
 }
+/* the larger gap before the CTAs sits on the final paragraph only */
+.hero-lede:last-of-type { margin-bottom: clamp(1.4em, 3.4vh, 2.2em); }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
