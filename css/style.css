@@ -170,7 +170,8 @@ h1, h2, h3 {
   z-index: 50;
   transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.site-header.is-stuck {
+.site-header.is-stuck,
+.site-header--solid {
   background: rgba(245, 242, 233, 0.92);
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(38, 42, 32, 0.10);
@@ -222,7 +223,8 @@ h1, h2, h3 {
   transform-origin: right;
   transition: transform 0.4s var(--ease);
 }
-.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 
 .nav-link--cta {
   border: 1px solid rgba(38, 42, 32, 0.3);
@@ -234,7 +236,8 @@ h1, h2, h3 {
   transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 .nav-link--cta::after { display: none; }
-.nav-link--cta:hover { background: var(--moss); border-color: var(--moss); color: var(--on-dark); }
+.nav-link--cta:hover,
+.nav-link--cta[aria-current="page"] { background: var(--moss); border-color: var(--moss); color: var(--on-dark); }
 
 .nav-toggle {
   display: none;
@@ -397,8 +400,7 @@ h1, h2, h3 {
 .about-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
 .about-copy p { color: var(--ink-soft); max-width: 56ch; }
 
-/* sign-off, set like a letter's closing line — kept small on purpose so it
-   doesn't compete with the manifesto line directly below the section */
+/* sign-off, set like a letter's closing line */
 .about-signoff {
   font-family: var(--font-display);
   font-style: italic;
@@ -431,8 +433,7 @@ h1, h2, h3 {
   top: calc(var(--header-h) + clamp(24px, 4vw, 56px));
   margin: 0;
 }
-/* offset hairline frame — the layered, hand-placed feel of the atelier swatch,
-   without repeating the arch */
+/* offset hairline frame — a layered, hand-placed feel without repeating the arch */
 .about-visual::before {
   content: "";
   position: absolute;
@@ -467,75 +468,42 @@ h1, h2, h3 {
   white-space: nowrap;
 }
 
-/* ══ MANIFESTO ════════════════════════════════════════════════════════ */
+/* ══ CLUB (Geneva Sewing Club, was ATELIER) ══════════════════════════════ */
 
-.manifesto {
-  background: var(--ivory-2);
-  padding: clamp(56px, 8vw, 96px) var(--gutter);
-  text-align: center;
-}
-.manifesto-line {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 4vw, 44px);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  line-height: 1.4;
-  color: var(--moss);
-  max-width: 1180px;
-  margin-inline: auto;
-}
-.manifesto-line .rule {
-  flex: 0 0 auto;
-  width: clamp(28px, 7vw, 90px);
-  height: 1px;
-  background: rgba(65, 74, 47, 0.32);
-}
-
-/* ══ ATELIER ══════════════════════════════════════════════════════════ */
-
-.atelier-grid {
+.club-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
   gap: clamp(40px, 7vw, 110px);
-  align-items: center;
+  align-items: start;
 }
 
-.atelier-visual { position: relative; }
-.arch-frame {
-  border-radius: 50% 50% 4px 4px / 22% 22% 4px 4px;
+/* floating photo, same treatment as .about-visual: tracks the copy column
+   as it scrolls, with an offset hairline frame behind it */
+.club-visual {
+  position: sticky;
+  top: calc(var(--header-h) + clamp(24px, 4vw, 56px));
+  margin: 0;
+}
+.club-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(clamp(12px, 1.7vw, 24px), clamp(12px, 1.7vw, 24px));
+  border: 1px solid rgba(125, 135, 99, 0.5);
+  border-radius: 3px;
+}
+
+.club-frame {
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 40px 80px -50px rgba(35, 39, 29, 0.7);
 }
-.arch-frame img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.club-frame img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
 
-.swatch {
-  position: absolute;
-  right: clamp(-72px, -6vw, -20px);
-  bottom: clamp(-46px, -5vw, -24px);
-  width: clamp(118px, 16vw, 178px);
-  padding: 10px 10px 8px;
-  background: var(--ivory);
-  box-shadow: 0 22px 44px -28px rgba(35, 39, 29, 0.6);
-  transform: rotate(-3deg);
-}
-.swatch img { aspect-ratio: 1; object-fit: cover; }
-.swatch-label {
-  display: block;
-  margin-top: 8px;
-  font-size: 9.5px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--ink-faint);
-}
-
-.atelier-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
-.atelier-copy p { color: var(--ink-soft); max-width: 52ch; }
+.club-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
+.club-copy p { color: var(--ink-soft); max-width: 52ch; }
 
 .facts {
   list-style: none;
@@ -560,6 +528,26 @@ h1, h2, h3 {
   letter-spacing: 0.08em;
   color: var(--ink-faint);
   line-height: 1.5;
+}
+
+.club-where {
+  margin: 1.8rem 0 0;
+  padding: 1.6rem 0 0;
+  border-top: 1px solid rgba(38, 42, 32, 0.14);
+  display: grid;
+  gap: 12px;
+}
+.club-where dt {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.35em;
+}
+.club-where dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
 }
 
 /* ══ COURSE ═══════════════════════════════════════════════════════════ */
@@ -637,6 +625,42 @@ h1, h2, h3 {
 .card-title {
   font-size: clamp(1.6rem, 2.4vw, 2rem);
   margin: 0 0 1.2em;
+}
+
+.price-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 1.8rem;
+}
+.price-option {
+  padding: 16px 12px;
+  border: 1px solid rgba(38, 42, 32, 0.14);
+  border-radius: 4px;
+  text-align: center;
+}
+.price-option--primary { border-color: var(--moss); }
+.price-amount {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2vw, 1.7rem);
+  line-height: 1;
+  color: var(--moss);
+}
+.price-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.price-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--ink-faint);
+  line-height: 1.4;
 }
 
 .card-details { margin: 0 0 1.8rem; }
@@ -889,7 +913,8 @@ h1, h2, h3 {
 
 .footer-nav { display: flex; flex-wrap: wrap; gap: 26px; font-size: 13.5px; }
 .footer-nav a { color: var(--on-dark-soft); transition: color 0.3s var(--ease); }
-.footer-nav a:hover { color: var(--on-dark); }
+.footer-nav a:hover,
+.footer-nav a[aria-current="page"] { color: var(--on-dark); }
 
 .footer-fine {
   margin: 0;
@@ -973,8 +998,13 @@ h1, h2, h3 {
   .hero-title { font-size: clamp(2.9rem, 13vw, 4.4rem); }
   .scroll-cue { display: none; }
 
-  .about-grid, .atelier-grid, .contact-grid { grid-template-columns: 1fr; }
-  .atelier-visual { max-width: 460px; }
+  .about-grid, .club-grid, .contact-grid { grid-template-columns: 1fr; }
+  .club-visual {
+    position: relative;
+    top: auto;
+    max-width: 460px;
+    margin-bottom: clamp(34px, 7vw, 52px);
+  }
 
   /* stacked: photograph first, then the words — same as the hero.
      Stays `relative` — the offset frame and tag are positioned against it. */
@@ -997,9 +1027,9 @@ h1, h2, h3 {
   .facts { grid-template-columns: 1fr; gap: 16px; }
   .facts li { display: flex; align-items: baseline; gap: 14px; }
   .fact-label { margin-top: 0; }
+  .price-options { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr; }
   .tile--wide { grid-column: span 1; }
-  .manifesto-line .rule { display: none; }
   .steps li { grid-template-columns: 40px 1fr; gap: 12px; }
   .contact-info li { flex-direction: column; gap: 4px; }
   .ci-label { flex: none; }
