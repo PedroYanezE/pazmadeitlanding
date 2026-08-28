@@ -397,8 +397,7 @@ h1, h2, h3 {
 .about-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
 .about-copy p { color: var(--ink-soft); max-width: 56ch; }
 
-/* sign-off, set like a letter's closing line — kept small on purpose so it
-   doesn't compete with the manifesto line directly below the section */
+/* sign-off, set like a letter's closing line */
 .about-signoff {
   font-family: var(--font-display);
   font-style: italic;
@@ -465,35 +464,6 @@ h1, h2, h3 {
   text-transform: uppercase;
   color: var(--ink-faint);
   white-space: nowrap;
-}
-
-/* ══ MANIFESTO ════════════════════════════════════════════════════════ */
-
-.manifesto {
-  background: var(--ivory-2);
-  padding: clamp(56px, 8vw, 96px) var(--gutter);
-  text-align: center;
-}
-.manifesto-line {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 4vw, 44px);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  line-height: 1.4;
-  color: var(--moss);
-  max-width: 1180px;
-  margin-inline: auto;
-}
-.manifesto-line .rule {
-  flex: 0 0 auto;
-  width: clamp(28px, 7vw, 90px);
-  height: 1px;
-  background: rgba(65, 74, 47, 0.32);
 }
 
 /* ══ ATELIER ══════════════════════════════════════════════════════════ */
@@ -999,7 +969,6 @@ h1, h2, h3 {
   .fact-label { margin-top: 0; }
   .gallery { grid-template-columns: 1fr; }
   .tile--wide { grid-column: span 1; }
-  .manifesto-line .rule { display: none; }
   .steps li { grid-template-columns: 40px 1fr; gap: 12px; }
   .contact-info li { flex-direction: column; gap: 4px; }
   .ci-label { flex: none; }
