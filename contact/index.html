@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Join the Sewing Club in Geneva | PazMadeIt</title>
+<meta name="description" content="Get in touch about a place on the course, a made-to-measure piece, or any question about sewing in Geneva.">
+<meta name="theme-color" content="#f5f2e9">
+
+<meta property="og:title" content="Contact — Join the Sewing Club in Geneva">
+<meta property="og:description" content="Get in touch about a place on the course, a made-to-measure piece, or any question about sewing in Geneva.">
+<meta property="og:image" content="../img/hero.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="../" class="wordmark">
+      <span class="wordmark-name">PazMadeIt</span>
+      <span class="wordmark-sub">sewing · Geneva</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
+    </button>
+
+    <nav class="nav" id="siteNav" aria-label="Main">
+      <a href="../about/" class="nav-link">About</a>
+      <a href="../club/" class="nav-link">Geneva Sewing Club</a>
+      <a href="../course/" class="nav-link">The Course</a>
+      <a href="../creations/" class="nav-link">Creations</a>
+      <a href="../contact/" class="nav-link nav-link--cta" aria-current="page">Get In Touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section id="contact" class="section contact">
+    <div class="container contact-grid">
+
+      <div class="contact-copy reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Join the <br>Sewing Club</br></h2>
+        <p>
+          Want a place on the next course, a piece made to measure, or just have a
+          question about whether this is for you? Write to me — I answer everything
+          myself.
+        </p>
+
+        <ul class="contact-info">
+          <li><span class="ci-label">Email</span><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li><span class="ci-label">Instagram</span><a href="https://instagram.com/pazmadeit" target="_blank" rel="noopener">@pazmadeit</a></li>
+          <li><span class="ci-label">Atelier</span><span>Geneva, Switzerland</span></li>
+          <li><span class="ci-label">Langues</span><span>English · Français · Español</span></li>
+        </ul>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-row">
+          <label for="subject">I'm writing about</label>
+          <select id="subject" name="subject">
+            <option value="A place on the course">A place on the course</option>
+            <option value="A made-to-measure piece">A made-to-measure piece</option>
+            <option value="Alterations">Alterations</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--solid btn--block">Send message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="../" class="wordmark wordmark--footer">
+      <span class="wordmark-name">Paz</span>
+      <span class="wordmark-sub">atelier · genève</span>
+    </a>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="../about/">About</a>
+      <a href="../club/">Geneva Sewing Club</a>
+      <a href="../course/">The Course</a>
+      <a href="../creations/">Creations</a>
+      <a href="../contact/" aria-current="page">Contact</a>
+    </nav>
+
+    <p class="footer-fine">© <span id="year"></span> Paz · Made by hand in Geneva</p>
+  </div>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

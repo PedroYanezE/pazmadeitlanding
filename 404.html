@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found | PazMadeIt</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f5f2e9">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!--
+  This file is served by GitHub Pages for ANY unmatched path at ANY depth,
+  but the browser stays on that mistyped URL — so relative links/assets here
+  would resolve against an unpredictable location. Kept fully self-contained
+  (inline styles, no image, no stylesheet link) on purpose. The one exception
+  is the "back home" link below, which is intentionally a root-relative path
+  rather than following the rest of the site's relative-path convention —
+  see the 404.html note in CLAUDE.md before changing it.
+-->
+<style>
+  :root {
+    --moss: #414a2f;
+    --ivory: #f5f2e9;
+    --ink: #262a20;
+    --ink-soft: #5d6353;
+    --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .wrap { max-width: 40ch; }
+  p.eyebrow {
+    margin: 0 0 0.5em;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  h1 {
+    margin: 0 0 0.6em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    color: var(--moss);
+  }
+  p.lede { margin: 0 0 1.8em; color: var(--ink-soft); }
+  a.home-link {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid var(--moss);
+    border-radius: 999px;
+    color: var(--moss);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  a.home-link:hover { background: var(--moss); color: var(--ivory); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">PazMadeIt</p>
+    <h1>Page not found</h1>
+    <p class="lede">The page you're looking for doesn't exist, or the link may be outdated.</p>
+    <a class="home-link" href="/pazmadeitlanding/">Back to the home page</a>
+  </div>
+</body>
+</html>
