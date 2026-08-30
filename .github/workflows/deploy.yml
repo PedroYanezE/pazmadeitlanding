@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html _site/
-          cp -r css img js about club course creations contact _site/
+          cp -r css img js about club creations contact _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
