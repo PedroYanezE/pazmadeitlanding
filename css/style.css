@@ -62,6 +62,7 @@ body {
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0 0 1.15em; text-align: justify; }
+b, strong { font-weight: 600; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -504,6 +505,27 @@ h1, h2, h3 {
 
 .club-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
 .club-copy p { color: var(--ink-soft); max-width: 52ch; }
+.club-copy h3 { font-size: 1.3rem; }
+.club-copy h3:not(:first-of-type) {
+  margin-top: 2.6rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(38, 42, 32, 0.14);
+}
+
+.club-copy .price-tier {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--moss);
+  margin: 1.6rem 0 0.5em;
+}
+.club-copy .price-tier:first-of-type { margin-top: 0.4em; }
+
+.club-copy .price-footnote {
+  color: var(--ink-faint);
+  font-size: 0.92rem;
+  margin-top: 1.6rem;
+}
 
 .schedule { margin: 0.6rem 0 1.6rem; max-width: 52ch; }
 .schedule-toggle {
@@ -595,6 +617,21 @@ h1, h2, h3 {
 }
 .course-copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
 .course-copy > p { color: var(--on-dark-soft); max-width: 50ch; }
+
+.course-list {
+  list-style: none;
+  margin: 0 0 1.15em;
+  padding: 0;
+  color: var(--on-dark-soft);
+}
+.course-list li { padding-left: 22px; position: relative; margin-bottom: 8px; }
+.course-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 12px; height: 1px;
+  background: var(--sage);
+}
 
 .steps {
   list-style: none;
