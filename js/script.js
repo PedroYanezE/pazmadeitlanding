@@ -52,6 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const status = document.getElementById('formStatus');
 
   if (form && status) {
+    const submitButton = form.querySelector('button[type="submit"]');
+    const submitLabel = submitButton.querySelector('.btn-label');
+    const LABELS = { idle: 'Send message', sending: 'Sending…', sent: 'Message sent' };
+
+    const setButtonState = (state) => {
+      submitButton.disabled = state !== 'idle';
+      submitButton.classList.toggle('is-loading', state === 'sending');
+      submitButton.classList.toggle('is-sent', state === 'sent');
+      submitButton.setAttribute('aria-busy', String(state === 'sending'));
+      submitLabel.textContent = LABELS[state];
+    };
+
+    const setStatus = (text, { srOnly = false } = {}) => {
+      status.textContent = text;
+      status.classList.toggle('is-sr-only', srOnly);
+    };
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -65,20 +82,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (firstInvalid) {
-        status.textContent = 'Please fill in your name, a valid email and a message.';
+        setStatus('Please fill in your name, a valid email and a message.');
         firstInvalid.focus();
         return;
       }
 
       const captchaField = form.querySelector('[name="h-captcha-response"]');
       if (!captchaField || !captchaField.value) {
-        status.textContent = 'Please confirm you’re not a robot before sending.';
+        setStatus('Please confirm you’re not a robot before sending.');
         return;
       }
 
-      const submitButton = form.querySelector('button[type="submit"]');
-      submitButton.disabled = true;
-      status.textContent = 'Sending…';
+      setButtonState('sending');
+      setStatus('Sending…', { srOnly: true });
 
       try {
         const response = await fetch('https://api.web3forms.com/submit', {
@@ -88,23 +104,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const result = await response.json();
 
-        if (result.success) {
-          status.textContent = 'Message sent — merci! I’ll reply soon.';
-          form.reset();
-        } else {
-          status.textContent = 'Something went wrong sending that. Please email pazmadeit@gmail.com directly.';
-        }
+        if (!result.success) throw new Error(result.message || 'Submission rejected');
+
+        form.reset();
+        setButtonState('sent');
+        setStatus('Message sent. I’ll reply soon.', { srOnly: true });
       } catch (error) {
-        status.textContent = 'Something went wrong sending that. Please email pazmadeit@gmail.com directly.';
+        setButtonState('idle');
+        setStatus('Something went wrong sending that. Please email pazmadeit@gmail.com directly.');
       } finally {
-        submitButton.disabled = false;
         if (window.hcaptcha) window.hcaptcha.reset();
       }
     });
 
     form.addEventListener('input', (event) => {
       event.target.classList.remove('has-error');
-      status.textContent = '';
+      setStatus('');
+      if (submitButton.classList.contains('is-sent')) setButtonState('idle');
     });
   }
 

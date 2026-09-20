@@ -155,6 +155,27 @@ h1, h2, h3 {
 .btn--line:hover { border-color: var(--moss); background: rgba(65, 74, 47, 0.06); transform: translateY(-2px); }
 .btn--block { display: flex; width: 100%; }
 
+/* button states: spinner while sending, check once sent */
+.btn-spinner,
+.btn-check { display: none; flex: none; }
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid rgba(240, 238, 228, 0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btnSpin 0.8s linear infinite;
+}
+.btn.is-loading .btn-spinner,
+.btn.is-sent .btn-check { display: block; }
+.btn:disabled { cursor: default; }
+.btn--solid:disabled:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  transform: none;
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+
 /* reveal on scroll */
 .reveal {
   opacity: 0;
@@ -958,6 +979,15 @@ h1, h2, h3 {
   font-size: 13px;
   text-align: center;
   color: var(--ink-soft);
+}
+/* progress/success are shown in the button; keep them announced to screen readers only */
+.form-status.is-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ══ FOOTER ═══════════════════════════════════════════════════════════ */
