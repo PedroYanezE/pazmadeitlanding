@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Join the Sewing Club in Geneva | PazMadeIt</title>
-<meta name="description" content="Get in touch about a place on the course, a made-to-measure piece, or any question about sewing in Geneva.">
+<title>Contact | PazMadeIt</title>
+<meta name="description" content="Join us at the Geneva Sewing Club, a relaxed weekly sewing session in Geneva and a chance to make time for your creative projects at the end of the week.">
 <meta name="theme-color" content="#f5f2e9">
 
-<meta property="og:title" content="Contact — Join the Sewing Club in Geneva">
-<meta property="og:description" content="Get in touch about a place on the course, a made-to-measure piece, or any question about sewing in Geneva.">
+<meta property="og:title" content="Contact">
+<meta property="og:description" content="Join us at the Geneva Sewing Club, a relaxed weekly sewing session in Geneva and a chance to make time for your creative projects at the end of the week.">
 <meta property="og:image" content="../img/hero.jpg">
 <meta property="og:type" content="website">
 
@@ -64,6 +64,9 @@
       </div>
 
       <form class="contact-form reveal" id="contactForm" novalidate>
+        <input type="hidden" name="access_key" value="9baf7c2d-6b43-4e16-868c-589847f947a4">
+        <input type="hidden" name="from_name" value="PazMadeIt website">
+        <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" autocomplete="name" required>
@@ -85,6 +88,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
+        <div class="h-captcha" data-captcha="true"></div>
         <button type="submit" class="btn btn--solid btn--block">Send message</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
@@ -112,6 +116,7 @@
   </div>
 </footer>
 
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="../js/script.js"></script>
 </body>
 </html>
