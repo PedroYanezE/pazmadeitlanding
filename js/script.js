@@ -1,8 +1,3 @@
-/* --------------------------------------------------------------------------
-   Paz — Atelier de couture, Genève
-   Progressive enhancement only: nothing here is required to read the page.
-   -------------------------------------------------------------------------- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   /* --- Header: solid background once you leave the hero ------------------ */
@@ -53,18 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach((el) => observer.observe(el));
   }
 
-  /* --- Contact form ------------------------------------------------------
-     Static site, so there is no backend. This opens the visitor's mail app
-     pre-filled. To collect submissions properly instead, point the <form>
-     at a service such as Formspree / Getform / Netlify Forms and delete
-     this handler.
-     ---------------------------------------------------------------------- */
-  const CONTACT_EMAIL = 'hello@example.com';
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
 
   if (form && status) {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const fields = ['name', 'email', 'message'].map((id) => form.elements[id]);
@@ -82,18 +70,36 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const name = form.elements.name.value.trim();
-      const email = form.elements.email.value.trim();
-      const subject = form.elements.subject ? form.elements.subject.value : 'Website enquiry';
-      const message = form.elements.message.value.trim();
+      const captchaField = form.querySelector('[name="h-captcha-response"]');
+      if (!captchaField || !captchaField.value) {
+        status.textContent = 'Please confirm you’re not a robot before sending.';
+        return;
+      }
 
-      const mailto = `mailto:${CONTACT_EMAIL}`
-        + `?subject=${encodeURIComponent(`${subject} — ${name}`)}`
-        + `&body=${encodeURIComponent(`${message}\n\n— ${name}\n${email}`)}`;
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      status.textContent = 'Sending…';
 
-      window.location.href = mailto;
-      status.textContent = 'Opening your email app… merci!';
-      form.reset();
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          status.textContent = 'Message sent — merci! I’ll reply soon.';
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong sending that. Please email pazmadeit@gmail.com directly.';
+        }
+      } catch (error) {
+        status.textContent = 'Something went wrong sending that. Please email pazmadeit@gmail.com directly.';
+      } finally {
+        submitButton.disabled = false;
+        if (window.hcaptcha) window.hcaptcha.reset();
+      }
     });
 
     form.addEventListener('input', (event) => {
